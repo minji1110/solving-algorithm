@@ -12,8 +12,8 @@ public class 여행경로 {
     static String str="";
 
     public static void main(String[] args) {
-        String[][] tickets={{"ICN", "aaa"}, {"ICN", "bbb"}, {"bbb", "ICN"}};
-//        String[][] tickets={{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
+//        String[][] tickets={{"ICN", "aaa"}, {"ICN", "bbb"}, {"bbb", "ICN"}};
+        String[][] tickets={{"ICN", "SFO"}, {"ICN", "ATL"}, {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL","SFO"}};
 //        String[][] tickets={{"ICN", "aaa"}, {"ICN", "ccc"}, {"ccc", "vvv"}, {"vvv","ICN"}};
         String[] answer=new Solution().solution(tickets);
         for (String a : answer) {
@@ -26,7 +26,7 @@ public class 여행경로 {
             checked = new boolean[tickets.length];
 
             for (int i = 0; i < tickets.length; i++) {
-                if (tickets[i][0] == "ICN") {
+                if (tickets[i][0].equals("ICN")) {
                     str = "ICN";
                     DFS(tickets, i);
                 }
@@ -34,6 +34,8 @@ public class 여행경로 {
                     checked[c] = false;
             }
 
+            for(String s:answerList)
+                System.out.println(s);
             Collections.sort(answerList);
             String[] answer = answerList.get(0).split(",");
 
@@ -49,7 +51,7 @@ public class 여행경로 {
             answerList.add(str);
         }
         for(int next=0;next<tickets.length;next++){
-            if(!checked[next] && tickets[i][1]==tickets[next][0]) {
+            if(!checked[next] && tickets[i][1].equals(tickets[next][0])) {
                 DFS(tickets, next);
                 checked[next]=false;
                 str=str.substring(0,str.length()-4);
