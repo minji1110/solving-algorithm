@@ -47,25 +47,6 @@ public class 단어변환 {
         }
     }
 
-//    private static int BFS(String[] words,int i, String target) {
-//        queue.add(i);
-//        visited[i]=true;
-//        shortCut[i]=1;
-//
-//        while(!queue.isEmpty()){
-//            int now=queue.poll();
-//            for(int v=0;v<words.length;v++){
-//                if(!visited[v] && possibleToChange(words[now],words[v])){
-//                    shortCut[v]=shortCut[now]+1;
-//                    visited[v]=true;
-//                    queue.add(v);
-//                    if(target.equals(words[v])) return shortCut[v];
-//                }
-//            }
-//        }
-//        return -1;
-//    }
-
     private static boolean possibleToChange(String begin,String end) {
         int notMatched=0;
         for(int i=0;i<wordLen&&notMatched<2;i++){
