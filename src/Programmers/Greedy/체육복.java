@@ -8,30 +8,29 @@ public class 체육복 {
     static int[] reserve={1,3,5};
 
     public static void main(String[] args) {
-        boolean[] complete=new boolean[reserve.length];
         Arrays.sort(lost);
         Arrays.sort(reserve);
         int possible=n-lost.length;
 
-        for(int l=0;l<lost.length;l++){
-            boolean borrowed=false;
-            for(int r=0;r<reserve.length;r++){
-                if(!complete[r] && Math.abs(lost[l]-reserve[r])==1) {
+
+        //겹치는 번호 삭제하기
+        for (int l=0;l<lost.length;l++) {
+            for (int r=0;r<reserve.length;r++) {
+                if(lost[l]==reserve[r]){
                     possible++;
-                    complete[r] = true;
-                    borrowed=true;
+                    lost[l]=-1;
+                    reserve[r]=-1;
                 }
-                else if(lost[l]==reserve[r]){
-                    if(!complete[r]){
-                        if(!borrowed){
-                            possible++;
-                            borrowed=true;
-                        }
-                        complete[r]=true;
-                    }
+            }
+        }
+
+        for(int l=0;l<lost.length;l++){
+            for(int r=0;r<reserve.length;r++){
+                if(Math.abs(lost[l]-reserve[r])==1) {
+                    possible++;
+                    reserve[r]=-1;
                     break;
                 }
-                else if(borrowed)break;
             }
         }
         System.out.println(possible);
