@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class 토마토 {
+public class 토마토_7576 {
     //오,왼,위,아래
     static int[] dx=new int[]{1,-1,0,0};
     static int[] dy=new int[]{0,0,1,-1};
@@ -72,24 +72,17 @@ public class 토마토 {
             for(int i=0;i<4;i++){
                 int adjacentA=node.a+dx[i];
                 int adjacentB=node.b+dy[i];
+
                 if(isAdjacent(adjacentA,adjacentB,row,col,matrix)){
                     matrix[adjacentA][adjacentB]=1;
-
-//                    System.out.println("adjacentA = " + adjacentA+" , adjacentB= "+adjacentB);
-//                    printMatrix(matrix);
-
                     queue.add(new Node(adjacentA,adjacentB,node.days+1));
                 }
             }
 
-            if(isComplete(matrix,row,col)) {
-                days=node.days+1;
-                flag=true;
-                break;
-            }
+            days=node.days;
         }
 
-        if(flag) System.out.println(days);
+        if(isComplete(matrix,row,col)) System.out.println(days);
         else System.out.println("-1");
     }
 
