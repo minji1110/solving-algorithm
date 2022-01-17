@@ -38,7 +38,6 @@ public class 카카오프렌즈_컬러링북 {
             for(int i=0;i<m;i++){
                 for (int j=0;j<n;j++){
                     if(!visited[i][j] && picture[i][j]!=0){
-                        //System.out.println("i="+i+", j="+j);
                         numberOfArea++;
                         queue.add(new Node(i,j,picture[i][j]));
                         visited[i][j]=true;
@@ -55,17 +54,16 @@ public class 카카오프렌즈_컬러링북 {
         }
 
         private int BFS(Queue<Node> queue, boolean[][] visited, int[][] picture, int m, int n) {
-            //오, 아래, 왼,
-            int[] dx = {0,1,0};
-            int[] dy = {1,0,-1};
+            //오,아래,왼,위
+            int[] dx = {0,1,0,-1};
+            int[] dy = {1,0,-1,0};
             int sizeOfArea=0;
 
             while (!queue.isEmpty()) {
                 Node now=queue.poll();
-                //System.out.println("x="+now.x+", y="+now.y);
                 sizeOfArea++;
 
-                for (int i = 0; i < 3; i++) {
+                for (int i = 0; i < 4; i++) {
                     int nextX = now.x + dx[i];
                     int nextY = now.y + dy[i];
                     int nextColor;
